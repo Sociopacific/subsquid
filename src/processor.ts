@@ -67,6 +67,11 @@ processor.run(new TypeormDatabase(), async ctx => {
 
     await ctx.store.save(Array.from(accounts.values()))
     await ctx.store.insert(transfers)
+
+    const transfer = await ctx.store.get(Transfer, transfers[0].id)
+    if (transfer) {
+        console.log('transfer.from: ', transfer.from)
+    }
 })
 
 
